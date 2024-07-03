@@ -19,7 +19,6 @@ runs:
         echo ${GITHUB_ACTION_PATH}
         cd ${GITHUB_ACTION_PATH}
         pwd
-        ls
         chmod +X install-system-dependencies.sh
         sh install-system-dependencies.sh
 
@@ -27,6 +26,8 @@ runs:
       id: find-exact-python-version
       shell: bash
       run: |
+        cd ${GITHUB_ACTION_PATH}
+        chmod +X find-exact-python-version.sh
         exact_python_version=$(${GITHUB_ACTION_PATH}/find-exact-python-version.sh "${{ inputs.python-version }}" "${{ inputs.python-version-file }}")
         echo "exact_python_version=${exact_python_version}" >> $GITHUB_OUTPUT
 
@@ -53,7 +54,9 @@ runs:
         installation_directory=${{ steps.set-installation-directory.outputs.installation_directory }}
         mkdir -p "${installation_directory}"
         exact_python_version="${{ steps.find-exact-python-version.outputs.exact_python_version }}"
-        ${GITHUB_ACTION_PATH}/install-python.sh "${exact_python_version}" "${installation_directory}"
+        cd ${GITHUB_ACTION_PATH}
+        chmod +X install-python.sh
+        sh ${GITHUB_ACTION_PATH}/install-python.sh "${exact_python_version}" "${installation_directory}"
 
     - name: Add python to PATH
       shell: bash
