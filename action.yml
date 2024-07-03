@@ -18,7 +18,8 @@ runs:
       run: |
         echo ${GITHUB_ACTION_PATH}
         cd ${GITHUB_ACTION_PATH}
-        ll
+        pwd
+        ls
         chmod +X install-system-dependencies.sh
         ${GITHUB_ACTION_PATH}/install-system-dependencies.sh
 
