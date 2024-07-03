@@ -17,7 +17,9 @@ runs:
       shell: bash
       run: |
         echo ${GITHUB_ACTION_PATH}
-        chmod +X ${GITHUB_ACTION_PATH}/install-system-dependencies.sh
+        cd ${GITHUB_ACTION_PATH}
+        ll
+        chmod +X install-system-dependencies.sh
         ${GITHUB_ACTION_PATH}/install-system-dependencies.sh
 
     - name: Find exact python version
