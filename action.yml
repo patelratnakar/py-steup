@@ -21,7 +21,7 @@ runs:
         pwd
         ls
         chmod +X install-system-dependencies.sh
-        install-system-dependencies.sh
+        sh install-system-dependencies.sh
 
     - name: Find exact python version
       id: find-exact-python-version
