@@ -16,6 +16,7 @@ runs:
     - name: Ensure dependencies of python are installed
       shell: bash
       run: |
+        chmod +X install-system-dependencies.sh
         ${GITHUB_ACTION_PATH}/install-system-dependencies.sh
 
     - name: Find exact python version
