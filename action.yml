@@ -16,16 +16,18 @@ runs:
     - name: Ensure dependencies of python are installed
       shell: bash
       run: |
-        chmod +X ${GITHUB_ACTION_PATH}/install-system-dependencies.sh        
+        cd ${GITHUB_ACTION_PATH}
+        chmod +X install-system-dependencies.sh
+        chmod +X find-exact-python-version.sh
         sh ${GITHUB_ACTION_PATH}/install-system-dependencies.sh
 
     - name: Find exact python version
       id: find-exact-python-version
       shell: bash
       run: |
-        chmod +X ${GITHUB_ACTION_PATH}/find-exact-python-version.sh
-        sh ${GITHUB_ACTION_PATH}/find-exact-python-version.sh
-        $(${GITHUB_ACTION_PATH}/find-exact-python-version.sh "${{ inputs.python-version }}" "${{ inputs.python-version-file }}")
+        pwd 
+        ls
+        sh find-exact-python-version.sh        
         exact_python_version=$(${GITHUB_ACTION_PATH}/find-exact-python-version.sh "${{ inputs.python-version }}" "${{ inputs.python-version-file }}")
         echo "exact_python_version=${exact_python_version}" >> $GITHUB_OUTPUT
 
