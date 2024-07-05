@@ -23,11 +23,9 @@ runs:
 
     - name: Find exact python version
       id: find-exact-python-version
-      shell: bash
       run: |
         pwd 
         ls
-        sh find-exact-python-version.sh        
         exact_python_version=$(${GITHUB_ACTION_PATH}/find-exact-python-version.sh "${{ inputs.python-version }}" "${{ inputs.python-version-file }}")
         echo "exact_python_version=${exact_python_version}" >> $GITHUB_OUTPUT
 
